@@ -1,21 +1,26 @@
 "use strict";
 
-const counter = {
-  body: document.querySelector("#counter"),
-  outputValue: document.querySelector("#value"),
-  value: 0,
-  increment() {
-    this.value = this.value + 1;
-    this.outputValue.textContent = this.value;
-  },
-  decrement() {
-    this.value = this.value - 1;
-    this.outputValue.textContent = this.value;
-  }
+const ref = {
+  decrBtn: document.querySelector('button'),
+  incrBtn: document.querySelector('button[data-action="increment"]'),
+  counterSpan: document.querySelector('#value'),
 };
 
-function eventHandler({ target }) {
-  counter[target.dataset.action]();
-}
+// console.log(ref);
 
-counter.body.addEventListener("click", eventHandler);
+let counterValue = 0;
+
+const incrValue = function incr() {
+  counterValue += 1;
+  ref.counterSpan.textContent = counterValue;
+};
+
+const decrValue = function decr() {
+  counterValue -= 1;
+  ref.counterSpan.textContent = counterValue;
+};
+
+ref.decrBtn.addEventListener('click', decrValue);
+ref.incrBtn.addEventListener('click', incrValue);
+
+console.log('см. на страницу');
